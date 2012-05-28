@@ -1,0 +1,61 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /profile
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /admin/profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /admin/register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /admin/change-password
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /admin/group
+
+kitpages_company_admin_company_list:
+    pattern:  /admin/company/list
+    defaults: { _controller: KitpagesCompanyBundle:Admin:companyList }
+
+kitpages_company_admin_company_create:
+    pattern:  /admin/company/new
+    defaults: { _controller: KitpagesCompanyBundle:Admin:companyCreate }
+
+kitpages_company_admin_company_edit:
+    pattern:  /admin/company/{id}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:companyEdit }
+    requirements:
+        id: \d+
+
+kitpages_company_admin_company_list_user:
+    pattern:  /admin/company/user/list/{companyId}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:userList }
+    requirements:
+        companyId: \d+
+
+kitpages_company_admin_company_create_user:
+    pattern:  /admin/company/user/create/{companyId}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:userCreate, group: user }
+    requirements:
+        companyId: \d+
+
+kitpages_company_admin_ownercompany_create_user:
+    pattern:  /admin/company/admin/create/{companyId}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:userCreate, group: admin }
+    requirements:
+        companyId: \d+
+
+kitpages_company_admin_company_edit_user:
+    pattern:  /admin/company/user/{userId}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:userEdit }
+    requirements:
+        userId: \d+

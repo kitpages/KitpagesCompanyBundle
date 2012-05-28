@@ -1,0 +1,56 @@
+{% extends '::admin.html.twig' %}
+
+{% block admin_body %}
+
+<h1><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list") }}">{{ "Company List" | trans }}</a> > {{ "Users of " | trans }}{{company.name}}</h1>
+
+
+    <a class="btn-standard" href="{{ path ("kitpages_company_admin_company_edit", {"id": company.id}) }}">{{ "Edit the company" | trans }}</a>
+
+    {% if company.ownerCompany %}
+        <a class="btn-standard" href="{{ path('kitpages_company_admin_ownercompany_create_user', {'companyId': company.id} ) }}">{{ "create a admin" | trans }}</a>
+    {% endif %}
+        <a class="btn-standard" href="{{ path('kitpages_company_admin_company_create_user', {'companyId': company.id} ) }}">{{ "create a user" | trans }}</a><br /><br />
+
+<div class="kitpages-company-list-default">
+{% embed 'KitpagesDataGridBundle:Grid:grid.html.twig' with {'grid': grid} %}
+    {% block kit_grid_thead %}
+    <thead>
+    <tr>
+        <th colspan="50" class="kit-grid-thead-filter">
+            <form action="{{ grid.requestUri }}" id="{{grid.filterFormName}}_form" method="GET">
+                <label for="{{grid.filterFormName}}">{{ "Search" | trans }}</label>
+                <input type="text" name="{{grid.filterFormName}}" id="{{grid.filterFormName}}" size="10" value="{{ grid.filterValue }}"/>
+                <button type="submit" class="btn-standard">{{ 'Search'|trans() }}</button>
+                <a href="{{ grid.requestUri }}" id="{{grid.filterFormName}}_reset_button">Reset</a>
+            </form>
+        </th>
+    </tr>
+    <tr class="kitpages-company-list-default-space">
+        <th colspan="50">
+        </th>
+    </tr>
+    <tr>
+        {% for field in grid.gridConfig.fieldList %}
+            {% if field.visible %}
+                <th>{{ field.label | trans }}</th>
+            {% endif %}
+        {% endfor %}
+        <th>Action</th>
+    </tr>
+    </thead>
+    {% endblock %}
+
+    {% block kit_grid_thead_column %}
+        <th>Action</th>
+    {% endblock %}
+
+    {% block kit_grid_tbody_column %}
+        <td class="app-admin-list-default-col-action" ><a class="btn-standard" href="{{ path ("kitpages_company_admin_company_edit_user", {"userId": item.id}) }}">{{ "Edit" | trans }}</a></td>
+    {% endblock %}
+
+
+{% endembed %}
+</div>
+
+{% endblock admin_body %}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--Admin edit-->
+    <services>
+        <service id="kitpages_company.user.form" factory-method="createNamed" factory-service="form.factory" class="Symfony\Component\Form\Form">
+            <argument type="service" id="kitpages_company.user.form.type" />
+            <argument>fos_user_profile_form_user</argument>
+            <argument />
+            <argument type="collection">
+                <argument key="validation_groups">%fos_user.profile.form.validation_groups%</argument>
+            </argument>
+        </service>
+
+        <service id="kitpages_company.user.form.type" class="Kitpages\CompanyBundle\Form\Type\UserFormType">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="app_user_edit_admin" />
+        </service>
+
+        <service id="kitpages_company.user.form.handler" class="Kitpages\CompanyBundle\Form\Handler\UserFormHandler" scope="request">
+            <argument type="service" id="kitpages_company.user.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
+        <service id="kitpages_company.user.create.form" factory-method="createNamed" factory-service="form.factory" class="Symfony\Component\Form\Form">
+            <argument type="service" id="kitpages_company.user.create.form.type" />
+            <argument>fos_user_registration_form</argument>
+            <argument />
+            <argument type="collection">
+                <argument key="validation_groups">%fos_user.profile.form.validation_groups%</argument>
+            </argument>
+        </service>
+
+        <service id="kitpages_company.user.create.form.type" class="Kitpages\CompanyBundle\Form\Type\UserCreateFormType">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="app_user_edit_admin" />
+        </service>
+
+        <service id="kitpages_company.user.create.form.handler" class="Kitpages\CompanyBundle\Form\Handler\UserCreateFormHandler" scope="request">
+            <argument type="service" id="kitpages_company.user.create.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="fos_user.mailer" />
+        </service>
+
+        <service id="kitpages_company.company.form" class="Kitpages\CompanyBundle\Form\Type\CompanyFormType">
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="kitpages_company.company.form.handler" class="Kitpages\CompanyBundle\Form\Handler\CompanyFormHandler">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="request" strict="false" />
+        </service>
+
+
+
+
+    </services>
+
+</container>
