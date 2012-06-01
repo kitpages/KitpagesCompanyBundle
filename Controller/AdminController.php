@@ -14,37 +14,6 @@ use Kitpages\DataGridBundle\Model\Field;
 
 class AdminController extends Controller
 {
-
-    public function adminListAction()
-    {
-
-        // create query builder
-        $em = $this->get('doctrine')->getEntityManager();
-        $repository = $em->getRepository('AppUserBundle:User');
-        $queryBuilder = $repository->createQueryBuilder("item")
-            ->join('item.group', 'g')
-            ->where('g.name = :name')
-            ->setParameter('name', 'admin');
-
-        $gridConfig = new GridConfig();
-        $gridConfig->setCountFieldName("item.id");
-        $gridConfig->addField(new Field("item.username", array("label" => "username", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.lastname", array("label" => "lastname", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.firstname", array("label" => "firstname", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.email", array("label" => "email", "filterable"=>true)));
-
-        $gridManager = $this->get("kitpages_data_grid.manager");
-        $grid = $gridManager->getGrid($queryBuilder, $gridConfig, $this->getRequest());
-
-        return $this->render('AppUserBundle:Admin:userList.html.twig', array(
-            "grid" => $grid,
-            "routingUserCreate" => $this->get('router')->generate(
-                'app_user_admin_user_admincreate',
-                array("kitpages_target" => $this->get('router')->generate('app_user_admin_adminlist'))
-            )
-        ));
-    }
-
     public function companyListAction()
     {
 

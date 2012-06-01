@@ -18,9 +18,27 @@ class UserCreateFormType extends BaseType
     {
         parent::buildForm($builder, $options);
         // add your custom field
-        $builder->add('firstname', 'text');
-        $builder->add('lastname', 'text');
-        $builder->add('phone', 'text');
+        $builder->add(
+            'firstname',
+            'text',
+            array(
+                'required' => false
+            )
+        );
+        $builder->add(
+            'lastname',
+            'text',
+            array(
+                'required' => false
+            )
+        );
+        $builder->add(
+            'phone',
+            'text',
+            array(
+                'required' => false
+            )
+        );
 //        $builder->add('company', 'entity', array(
 //            'class' => 'Kitpages\\CompanyBundle\\Entity\\Company',
 //            'empty_value' => 'Choose an company',
