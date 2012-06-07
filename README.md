@@ -36,7 +36,19 @@ You need to add the following lines in your deps :
 AppKernel.php
         $bundles = array(
         ...
-            new Kitpages\EdmBundle\KitpagesCompanyBundle(),
+            new Kitpages\CompanyBundle\KitpagesCompanyBundle(),
         );
+
+app/config/routing.yml
+    KitpagesEdmBundle:
+        resource: "@KitpagesCompanyBundle/Resources/config/routing.yml"
+        prefix:   /
+
+Configuration FOSUserBundle
+============
+    fos_user:
+        user_class: Kitpages\CompanyBundle\Entity\User
+        group:
+          group_class: Kitpages\CompanyBundle\Entity\Group
 
 
