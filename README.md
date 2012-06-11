@@ -40,7 +40,7 @@ AppKernel.php
         );
 
 app/config/routing.yml
-    KitpagesEdmBundle:
+    KitpagesCompanyBundle:
         resource: "@KitpagesCompanyBundle/Resources/config/routing.yml"
         prefix:   /
 
@@ -51,4 +51,6 @@ Configuration FOSUserBundle
         group:
           group_class: Kitpages\CompanyBundle\Entity\Group
 
-
+Configuration
+=============
+you must specify a company owner in database
