@@ -2,7 +2,7 @@
 
 {% block admin_body %}
 
-<h1><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list") }}">{{ "Company List" | trans }}</a> > {{ "Users of " | trans }}{{company.name}}</h1>
+<h2><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list") }}">{{ "Company List" | trans }}</a> > {{ "Users of " | trans }}{{company.name}}</h2>
 
 
     <a class="btn-standard" href="{{ path ("kitpages_company_admin_company_edit", {"id": company.id}) }}">{{ "Edit the company" | trans }}</a>

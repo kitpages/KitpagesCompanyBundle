@@ -1,7 +1,7 @@
 {% extends 'KitpagesCompanyBundle::layout-admin.html.twig' %}
 
 {% block admin_body %}
-<h1><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list") }}">{{ "Company List" | trans }}</a> > {% if form.vars.value.id == null %}{{ "New" | trans }}{% else %}{{form.vars.value.name}}{% endif %}</h1>
+<h2><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list") }}">{{ "Company List" | trans }}</a> > {% if form.vars.value.id == null %}{{ "New" | trans }}{% else %}{{form.vars.value.name}}{% endif %}</h2>
 {% if form.vars.value.name != null %}
 <a class="btn-standard" href="{{ path ("kitpages_company_admin_company_list_user", {"companyId": form.vars.value.id}) }}">{{ "List user" | trans }}</a>
 {% endif %}
