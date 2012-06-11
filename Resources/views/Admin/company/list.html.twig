@@ -8,6 +8,8 @@
 <div class="kitpages-company-list-default">
     <a class="btn-standard" href="{{ path('kitpages_company_admin_company_create' )}}">{{ "create" | trans }}</a><br /><br />
 {% embed 'KitpagesDataGridBundle:Grid:grid.html.twig' with {'grid': grid} %}
+    {% block kit_grid_filter %}
+    {% endblock %}
     {% block kit_grid_thead %}
     <thead>
     <tr>
