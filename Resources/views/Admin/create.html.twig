@@ -2,7 +2,7 @@
 
 {% block admin_body %}
 {% form_theme form theme %}
-<h1><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list_user", {"companyId": company.id}) }}">{{company.name}}</a> > New {{group}}</h1>
+<h2><a class="kitpages-company-link-breadcrumb" href="{{ path ("kitpages_company_admin_company_list_user", {"companyId": company.id}) }}">{{company.name}}</a> > New {{group}}</h2>
 
 <div class="kitpages-company-form-default">
 <form {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">

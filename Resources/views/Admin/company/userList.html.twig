@@ -14,6 +14,9 @@
 
 <div class="kitpages-company-list-default">
 {% embed 'KitpagesDataGridBundle:Grid:grid.html.twig' with {'grid': grid} %}
+    {% block kit_grid_filter %}
+    {% endblock %}
+
     {% block kit_grid_thead %}
     <thead>
     <tr>
