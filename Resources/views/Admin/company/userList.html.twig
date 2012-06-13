@@ -8,9 +8,9 @@
     <a class="btn-standard" href="{{ path ("kitpages_company_admin_company_edit", {"id": company.id}) }}">{{ "Edit the company" | trans }}</a>
 
     {% if company.ownerCompany %}
-        <a class="btn-standard" href="{{ path('kitpages_company_admin_ownercompany_create_user', {'companyId': company.id} ) }}">{{ "create a admin" | trans }}</a>
+        <a class="btn-standard" href="{{ path('kitpages_company_admin_ownercompany_create_user', {'companyId': company.id} ) }}">{{ "Create a admin" | trans }}</a>
     {% endif %}
-        <a class="btn-standard" href="{{ path('kitpages_company_admin_company_create_user', {'companyId': company.id} ) }}">{{ "create a user" | trans }}</a><br /><br />
+        <a class="btn-standard" href="{{ path('kitpages_company_admin_company_create_user', {'companyId': company.id} ) }}">{{ "Create a user" | trans }}</a><br /><br />
 
 <div class="kitpages-company-list-default">
 {% embed 'KitpagesDataGridBundle:Grid:grid.html.twig' with {'grid': grid} %}

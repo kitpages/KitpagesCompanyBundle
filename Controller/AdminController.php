@@ -24,9 +24,9 @@ class AdminController extends Controller
 
         $gridConfig = new GridConfig();
         $gridConfig->setCountFieldName("item.id");
-        $gridConfig->addField(new Field("item.name", array("label" => "name", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.phone", array("label" => "phone", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.email", array("label" => "email", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.name", array("label" => "Name", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.phone", array("label" => "Phone", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.email", array("label" => "Email", "filterable"=>true)));
 
         $gridManager = $this->get("kitpages_data_grid.manager");
         $grid = $gridManager->getGrid($queryBuilder, $gridConfig, $this->getRequest());
@@ -49,11 +49,11 @@ class AdminController extends Controller
 
         $gridConfig = new GridConfig();
         $gridConfig->setCountFieldName("item.id");
-        $gridConfig->addField(new Field("item.username", array("label" => "username", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.lastname", array("label" => "lastname", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.firstname", array("label" => "firstname", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.email", array("label" => "email", "filterable"=>true)));
-        $gridConfig->addField(new Field("item.phone", array("label" => "phone", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.username", array("label" => "Username", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.lastname", array("label" => "Lastname", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.firstname", array("label" => "Firstname", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.email", array("label" => "Email", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.phone", array("label" => "Phone", "filterable"=>true)));
 
         $gridManager = $this->get("kitpages_data_grid.manager");
         $grid = $gridManager->getGrid($queryBuilder, $gridConfig, $this->getRequest());

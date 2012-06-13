@@ -1,13 +1,15 @@
-username: Login
-lastname: Nom
-firstname: Prénom
-email: Email
-phone: Téléphone
+Username: Login
+Lastname: Nom
+Firstname: Prénom
+Email: Email
+Phone: Téléphone
 Search: Chercher
 Edit the company: Editer l'entreprise
-create a user: Créer un utilisateur
+Create a user: Créer un utilisateur
+Create a admin: Créer un administrateur
 Companies: Entreprises
 Create: Créer
 List user: Liste utilisateurs
 Edit: Editer
-name: Nom
+Name: Nom
+Address: Adresse
