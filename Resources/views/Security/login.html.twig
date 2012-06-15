@@ -9,14 +9,13 @@
 <div class="app-user-connexion">
     <form action="{{ path("fos_user_security_check") }}" method="post" id="login">
         <div>
-            <h2>{{ "My space" | trans }}</h2>
-            <p>{{ "Please sign in to access to your space" | trans }}</p>
+            <h2>{{ "Identification" | trans }}</h2>
             {% if error %}
                 <div class="error">{{ error }}</div>
             {% endif %}
             <div>
-                <input class="help-input-inline" type="text" id="username" name="_username" value="{{ 'security.login.username.input'|trans({}, 'FOSUserBundle') }}" /><br />
-                <input class="help-input-inline" type="password" value="{{ 'security.login.password.input'|trans({}, 'FOSUserBundle') }}"  id="password" name="_password" >
+                <input type="text" id="username" name="_username" placeholder="{{ 'security.login.username.input'|trans({}, 'FOSUserBundle') }}" /><br />
+                <input type="password" placeholder="{{ 'security.login.password.input'|trans({}, 'FOSUserBundle') }}"  id="password" name="_password" >
 
 
                 <div>
