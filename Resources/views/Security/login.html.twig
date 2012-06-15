@@ -1,10 +1,5 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-{% block javascripts %}
-{{ parent() }}
-<script src="{{ asset('js/helpInputInline.js') }}"></script>
-{% endblock %}
-
 {% block fos_user_content %}
 <div class="app-user-connexion">
     <form action="{{ path("fos_user_security_check") }}" method="post" id="login">
