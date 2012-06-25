@@ -16,3 +16,4 @@ fos_user_profile_form_user_phone: "Téléphone"
 Forgotten Password: "Mot de passe oublié ?"
 security.login.username.input: "Login"
 security.login.password.input: "Mot de passe"
+User: Profil

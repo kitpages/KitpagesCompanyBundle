@@ -14,3 +14,4 @@ fos_user_registration_form_phone: "Phone"
 fos_user_profile_form_user_phone: "Phone"
 security.login.username.input: "Login"
 security.login.password.input: "Password"
+User: Profil
