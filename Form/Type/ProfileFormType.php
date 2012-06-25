@@ -1,29 +1,17 @@
 <?php
-
+ 
 namespace Kitpages\CompanyBundle\Form\Type;
-
+ 
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\AbstractType;
-use Kitpages\CompanyBundle\Entity\Group;
-
-class UserFormType extends AbstractType
+use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+ 
+class ProfileFormType extends BaseType
 {
-
-    public function getDefaultOptions(array $options)
+    public function buildUserForm(FormBuilder $builder, array $options)
     {
-        return array();
-    }
+        parent::buildUserForm($builder, $options);
 
-    public function getName()
-    {
-        return 'kitpages_company_user_create_form';
-    }
-
-    public function buildForm(FormBuilder $builder, array $options)
-    {
-        $builder
-//            ->add('username')
-            ->add('email', 'email');
+        $builder->add('email', 'email');
         $builder->add(
             'firstname',
             'text',
@@ -45,5 +33,10 @@ class UserFormType extends AbstractType
                 'required' => false
             )
         );
+    }
+ 
+    public function getName()
+    {
+        return 'kitpages_company_profile';
     }
 }
