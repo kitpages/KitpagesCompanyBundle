@@ -59,3 +59,9 @@ kitpages_company_admin_company_edit_user:
     defaults: { _controller: KitpagesCompanyBundle:Admin:userEdit }
     requirements:
         userId: \d+
+
+kitpages_company_admin_company_delete_user:
+    pattern:  /admin/company/user/delete/{userId}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:userDelete }
+    requirements:
+      userId: \d+

@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Kitpages\DataGridBundle\Model\GridConfig;
 use Kitpages\DataGridBundle\Model\Field;
+use Kitpages\CompanyBundle\Event\UserEvent;
+use Kitpages\CompanyBundle\KitpagesCompanyEvents;
 
 class AdminController extends Controller
 {
@@ -72,7 +74,6 @@ class AdminController extends Controller
      */
     public function userEditAction($userId)
     {
-
         $em = $this->get('doctrine')->getEntityManager();
         $user = $em->getRepository('KitpagesCompanyBundle:User')->find($userId);
 
@@ -92,6 +93,34 @@ class AdminController extends Controller
                 'theme' => $this->container->getParameter('fos_user.template.theme')
             )
         );
+    }
+
+    /**
+     * Delete a user
+     */
+    public function userDeleteAction($userId)
+    {
+        $em = $this->get('doctrine')->getEntityManager();
+        $user = $em->getRepository('KitpagesCompanyBundle:User')->find($userId);
+
+        // send on event
+        $event = new UserEvent();
+        $event->setUser($user);
+        $this->get('event_dispatcher')->dispatch(KitpagesCompanyEvents::onDeleteUser, $event);
+        if (! $event->isDefaultPrevented()) {
+            $companyId = $user->getCompany()->getId();
+            $this->container->get('fos_user.user_manager')->deleteUser($user);
+        }
+        // send after event
+        $this->get('event_dispatcher')->dispatch(KitpagesCompanyEvents::afterDeleteUser, $event);
+
+        return new RedirectResponse($this->container->get('router')->generate(
+            'kitpages_company_admin_company_list_user',
+            array(
+                'companyId' => $companyId
+            )
+
+        ));
     }
 
     public function userCreateAction($group, $companyId)

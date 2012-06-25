@@ -49,11 +49,23 @@
     {% endblock %}
 
     {% block kit_grid_tbody_column %}
-        <td class="app-admin-list-default-col-action" ><a class="btn-standard" href="{{ path ("kitpages_company_admin_company_edit_user", {"userId": item.id}) }}">{{ "Edit" | trans }}</a></td>
+        <td class="app-admin-list-default-col-action" >
+            <a class="btn-standard" href="{{ path ("kitpages_company_admin_company_edit_user", {"userId": item.id}) }}">{{ "Edit" | trans }}</a>
+            <a class="btn-standard kit-company-confirm-delete" href="{{ path ("kitpages_company_admin_company_delete_user", {"userId": item.id}) }}">{{ "Delete" | trans }}</a>
+        </td>
     {% endblock %}
 
 
 {% endembed %}
 </div>
+
+<script>
+    $('.kit-company-confirm-delete').click(function(e) {
+        var response = confirm('{{ "remove the user?" | trans }}');
+        if (!response) {
+            e.preventDefault();
+        }
+    });
+</script>
 
 {% endblock admin_body %}
