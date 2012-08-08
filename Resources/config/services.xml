@@ -61,7 +61,16 @@
             <argument type="service" id="request" strict="false" />
         </service>
 
+        <service id="kitpages_company.user.manager" class="Kitpages\CompanyBundle\Service\UserManager">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="translator" />
+        </service>
 
+        <service id="kitpages_company.twig.extension.action" class="Kitpages\CompanyBundle\Twig\Extension\ActionExtension">
+            <tag name="twig.extension" />
+            <argument type="service" id="router"/>
+        </service>
 
 
     </services>

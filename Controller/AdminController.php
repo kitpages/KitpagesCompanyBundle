@@ -60,12 +60,16 @@ class AdminController extends Controller
         $gridManager = $this->get("kitpages_data_grid.manager");
         $grid = $gridManager->getGrid($queryBuilder, $gridConfig, $this->getRequest());
 
-
         $company = $em->getRepository('KitpagesCompanyBundle:Company')->find($companyId);
+
+        $actionList = $this->get('kitpages_company.user.manager')->userActionList();
+
+
 
         return $this->render('KitpagesCompanyBundle:Admin/company:userList.html.twig', array(
             "grid" => $grid,
-            "company" => $company
+            "company" => $company,
+            "actionList" => $actionList
         ));
     }
 
