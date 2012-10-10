@@ -111,8 +111,8 @@ class AdminController extends Controller
         $event = new UserEvent();
         $event->setUser($user);
         $this->get('event_dispatcher')->dispatch(KitpagesCompanyEvents::onDeleteUser, $event);
+        $companyId = $user->getCompany()->getId();
         if (! $event->isDefaultPrevented()) {
-            $companyId = $user->getCompany()->getId();
             $this->container->get('fos_user.user_manager')->deleteUser($user);
         }
         // send after event
