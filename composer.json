@@ -1,0 +1,23 @@
+{
+    "name": "kitpages/company-bundle",
+    "description": "This Symfony2 Bundle extends FOSUserBundle. Adds an administration to manage users and a user's company",
+    "keywords": ["FOSUserBundle","manage users","user's company"],
+    "homepage": "http://github.com/kitpages/KitpagesCompanyBundle",
+    "type": "symfony-bundle",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Philippe Le Van",
+            "homepage": "https://twitter.com/#!/plv"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.1.*",
+        "doctrine/orm": ">=2.1.0",
+        "FOS/user-bundle": "1.2.*"
+    },
+    "autoload": {
+        "psr-0": { "Kitpages\\CompanyBundle": "" }
+    },
+    "target-dir": "Kitpages/CompanyBundle"
+}
