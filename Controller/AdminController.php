@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Kitpages\DataGridBundle\Model\GridConfig;
 use Kitpages\DataGridBundle\Model\Field;
-use Kitpages\CompanyBundle\Event\UserEvent;
 use Kitpages\CompanyBundle\KitpagesCompanyEvents;
 
 class AdminController extends Controller
@@ -29,6 +28,7 @@ class AdminController extends Controller
         $gridConfig->addField(new Field("item.name", array("label" => "Name", "filterable"=>true)));
         $gridConfig->addField(new Field("item.phone", array("label" => "Phone", "filterable"=>true)));
         $gridConfig->addField(new Field("item.email", array("label" => "Email", "filterable"=>true)));
+        $gridConfig->addField(new Field("item.ownerCompany", array("label" => "", "visible"=>false)));
 
         $gridManager = $this->get("kitpages_data_grid.manager");
         $grid = $gridManager->getGrid($queryBuilder, $gridConfig, $this->getRequest());
@@ -106,18 +106,9 @@ class AdminController extends Controller
     {
         $em = $this->get('doctrine')->getEntityManager();
         $user = $em->getRepository('KitpagesCompanyBundle:User')->find($userId);
-
-        // send on event
-        $event = new UserEvent();
-        $event->setUser($user);
-        $this->get('event_dispatcher')->dispatch(KitpagesCompanyEvents::onDeleteUser, $event);
         $companyId = $user->getCompany()->getId();
-        if (! $event->isDefaultPrevented()) {
-            $this->container->get('fos_user.user_manager')->deleteUser($user);
-        }
-        // send after event
-        $this->get('event_dispatcher')->dispatch(KitpagesCompanyEvents::afterDeleteUser, $event);
-
+        $userManager = $this->get('kitpages_company.user.manager');
+        $userManager->deleteUser($user);
         return new RedirectResponse($this->container->get('router')->generate(
             'kitpages_company_admin_company_list_user',
             array(
@@ -199,6 +190,24 @@ class AdminController extends Controller
 
         return $this->render('KitpagesCompanyBundle:Admin/company:company.html.twig', array(
             'form'   => $form->createView()
+        ));
+    }
+
+    public function companyDeleteAction($id)
+    {
+
+        $em = $this->get('doctrine')->getEntityManager();
+        $entity = $em->getRepository('KitpagesCompanyBundle:Company')->find($id);
+        $userManager = $this->get('kitpages_company.user.manager');
+        foreach($entity->getUserList() as $user) {
+            $userManager->deleteUser($user);
+        }
+
+        $em->remove($entity);
+        $em->flush();
+
+        return new RedirectResponse($this->container->get('router')->generate(
+            'kitpages_company_admin_company_list'
         ));
     }
 

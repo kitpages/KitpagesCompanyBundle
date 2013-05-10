@@ -11,6 +11,7 @@ Companies: Entreprises
 Create: Créer
 List user: Liste utilisateurs
 Edit: Editer
+Delete: Supprimer
 Name: Nom
 Address: Adresse
 Country: Pays
@@ -18,3 +19,4 @@ Company List: Liste des entreprises
 Users of: Utilisateurs de
 Create a company: Créer une entreprise
 remove the user?: Supprimer cet utilisateur?
+remove the company and all company's user ?: Supprimer cette entreprise et tous ses utilisateurs ?

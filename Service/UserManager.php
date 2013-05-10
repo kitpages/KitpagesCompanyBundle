@@ -22,17 +22,20 @@ class UserManager {
     protected $dispatcher = null;
     protected $router = null;
     protected $translator = null;
+    protected $fosUserManager = null;
 
 
     public function __construct(
         Registry $doctrine,
         EventDispatcherInterface $dispatcher,
-        Translator $translator
+        Translator $translator,
+        $fosUserManager
     )
     {
         $this->doctrine = $doctrine;
         $this->dispatcher = $dispatcher;
         $this->translator = $translator;
+        $this->fosUserManager = $fosUserManager;
     }
 
     public function userActionList()
@@ -63,6 +66,20 @@ class UserManager {
         $event->set('actionList', $actionList);
         $this->dispatcher->dispatch(KitpagesCompanyEvents::afterDisplayActionUser, $event);
         return $event->get('actionList');
+    }
+
+    public function deleteUser($user)
+    {
+        // send on event
+        $event = new UserEvent();
+        $event->setUser($user);
+        $this->dispatcher->dispatch(KitpagesCompanyEvents::onDeleteUser, $event);
+
+        if (! $event->isDefaultPrevented()) {
+            $this->fosUserManager->deleteUser($user);
+        }
+        // send after event
+        $this->dispatcher->dispatch(KitpagesCompanyEvents::afterDeleteUser, $event);
     }
 
 

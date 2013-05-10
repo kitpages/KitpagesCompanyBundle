@@ -65,6 +65,7 @@
             <argument type="service" id="doctrine" />
             <argument type="service" id="event_dispatcher" />
             <argument type="service" id="translator" />
+            <argument type="service" id="fos_user.user_manager" />
         </service>
 
         <service id="kitpages_company.twig.extension.action" class="Kitpages\CompanyBundle\Twig\Extension\ActionExtension">

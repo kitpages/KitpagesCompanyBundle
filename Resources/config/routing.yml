@@ -36,6 +36,12 @@ kitpages_company_admin_company_edit:
     requirements:
         id: \d+
 
+kitpages_company_admin_company_delete:
+    pattern:  /admin/company/delete/{id}
+    defaults: { _controller: KitpagesCompanyBundle:Admin:companyDelete }
+    requirements:
+        id: \d+
+
 kitpages_company_admin_company_list_user:
     pattern:  /admin/company/user/list/{companyId}
     defaults: { _controller: KitpagesCompanyBundle:Admin:userList }
